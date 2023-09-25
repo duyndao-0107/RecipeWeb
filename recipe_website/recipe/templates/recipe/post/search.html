@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+    <div class="search">
+        <div class="container">
+            <h1 style="margin-top: revert;">Search Results</h1>
+            
+            {% for post in object_list %}
+                <div class="comment-form p-3 p-md-4 row g-0">
+                    {% if request.user.is_authenticated %}
+                        <div class="col-lg-2 menu-item">
+                            <a href="{{ post.get_absolute_url }}"><img src="{{ post.image.url }}" class="img-fluid testimonial-img" alt=""></a>
+                        </div>
+
+                        <div class="col-lg-10 d-flex align-items-center reservation-form-bg">
+                            <div class="row" style="padding: 40px;">
+                                <h4><a href="{{ post.get_absolute_url }}"> {{ post.title }} </a></h4>
+
+                                <p class="ingredients">
+                                    {{ post.body|truncatewords:30|linebreaks }}
+                                </p>
+    
+                                <p class="date"> Published {{ post.publish }} by {{ post.author }} </p>
+                            </div>
+                        </div><!-- Menu Item -->
+                    {% else %}
+                        <div class="col-lg-2 menu-item">
+                            <a href="{{ post.get_absolute_url_home }}"><img src="{{ post.image.url }}" class="img-fluid testimonial-img" alt=""></a>
+                        </div>
+
+                        <div class="col-lg-10 d-flex align-items-center reservation-form-bg">
+                            <div class="row" style="padding: 40px;">
+                                <h4><a href="{{ post.get_absolute_url_home }}"> {{ post.title }} </a></h4>
+
+                                <p class="ingredients">
+                                    {{ post.body|truncatewords:30|linebreaks }}
+                                </p>
+
+                                <p class="date"> Published {{ post.publish }} by {{ post.author }} </p>
+                            </div>
+                        </div><!-- Menu Item -->
+                    {% endif %}
+                </div>
+
+                {% empty %}
+                <div style="padding-bottom: 295.5px;">There are no results for your searching.</div>
+            {% endfor %}
+
+        </div>
+    </div>
+    
+    
+{% endblock %}

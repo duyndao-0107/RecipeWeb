@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Edit your recipe{% endblock %}
+
+{% block content %}
+    
+    <div class="contact">
+        <div class="container">
+            <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+                <h1 style="padding-top: 10px;">Edit your recipe</h1>
+                <p>You can edit your recipe using the following form:</p>
+            </div>
+
+            <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+                <form method="post" enctype="multipart/form-data" class="comment-form p-3 p-md-4">
+                    {{ post_form.as_p }}
+                    
+                    {% csrf_token %}
+                    
+                    <div class="text-center"><button type="submit">Save changes</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

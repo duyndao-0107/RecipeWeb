@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Posts ranking{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin: 100px; padding-bottom: 100px">
+        <h1>Posts ranking</h1>
+        <ol>
+            {% for post in most_viewed %}
+                <li>
+                    <a href="{{ post.get_absolute_url }}">
+                        {{ post.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+    <div id="form">
+        <div class="container">
+            <div class="row justify-content-between gy-5">
+                <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+                    <h1 data-aos="fade-up">Log in</h1>
+                    {% if form.errors %}
+                        <p data-aos="fade-up" data-aos-delay="100">Your username and password didn't match. Please try again. </p>
+                    {% else %}
+                        <p data-aos="fade-up" data-aos-delay="100">Please, use the following form to log-in. If you don't have an account <a href="{% url "register" %}">register here</a></p>
+                    {% endif %}
+                </div>
+    
+                <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+                    <div class="form-structor">
+                        <form action="" method="post">
+                            <div class="login">
+                                <div class="center">
+                                    <h2 class="form-title" id="login">Log in</h2>
+                                    <div class="form-holder">
+                                        <input id="id_username" class="input" placeholder="Username" type="text" name="username" maxlength="100" required />
+                                        <input id="id_password" class="input" placeholder="Password" type="password" name="password" maxlength="100" required />
+                                        {% csrf_token %}
+                                    </div>
+                                    <button class="submit-btn" type="submit">Log in</button>
+                                    <p><a href="{% url "password_reset" %}">Forgotten your password?</a></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

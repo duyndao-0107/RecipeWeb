@@ -1,0 +1,59 @@
+<!-- ======= Gallery Section ======= -->
+<section id="gallery" class="gallery section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h2>gallery</h2>
+        <p>Check <span>Our Gallery</span></p>
+      </div>
+
+      <div class="row gy-5">
+        {% load thumbnail %}
+            {% for image in images %}
+              {% if request.user.is_authenticated %}
+                <div class="col-lg-4 menu-item">
+                  {% thumbnail image.image 296x296 crop="smart" as im %}
+                  <a href="{{ image.get_absolute_url }}">
+                    <img style="padding-bottom: 10px;" src="{{ im.url }}" class="img-fluid" alt="">
+                  </a>
+
+                  <div class="info">
+                    <a href="{{ image.get_absolute_url }}" class="title" >
+                        {{ image.title }}
+                    </a>
+                  </div>
+                </div>
+              {% else %}
+                <div class="col-lg-4 menu-item">
+                  {% thumbnail image.image 296x296 crop="smart" as im %}
+                  <a href="{{ image.get_absolute_url_home }}">
+                    <img style="padding-bottom: 10px;" src="{{ im.url }}" class="img-fluid" alt="">
+                  </a>
+
+                  <div class="info">
+                    <a href="{{ image.get_absolute_url_home }}" class="title" >
+                        {{ image.title }}
+                    </a>
+                  </div>
+                </div>
+              {% endif %}
+
+            {% endfor %}
+      </div>
+
+    </div>
+</section><!-- End Gallery Section -->
+
+    <!-- <div class="image">
+        <a href="{{ image.get_absolute_url }}">
+            <a href="{{ image.get_absolute_url }}">
+                <img src="{{ image.url }}">
+            </a>
+        </a>
+        
+        <div class="info">
+            <a href="{{ image.get_absolute_url }}" class="title" >
+                {{ image.title }}
+            </a>
+        </div>
+    </div> -->

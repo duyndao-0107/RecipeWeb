@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block title %}People{% endblock %}
+{% block content %}
+    <h1>People</h1>
+    <div id="people-list" class="row gy-5" style="padding: 100px 0 200px 100px;">
+        {% for user in users %}
+            {% if user.profile.photo %}
+                <div class="user col-lg-2 menu-item">
+                    <a href="#">
+                        <img src="{% thumbnail user.profile.photo 180x180 %}">
+                    </a>
+                    <div class="info">
+                        <a href="#" class="title">
+                            {{ user.get_full_name }}
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
